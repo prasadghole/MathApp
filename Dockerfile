@@ -1,16 +1,7 @@
-FROM golang:1.7
+FROM golang:1.6
 
-# create directory where the application will reside
-run mkdir /app
+RUN go get github.com/astaxie/beego && go get github.com/beego/bee
 
-# copy the application files
-ADD MathApp /app/MathApp
-ADD views /app/views
-ADD conf /app/conf
+EXPOSE 9080
 
-# set working directory to the app 
-WORKDIR  app
-
-EXPOSE 8080
-
-ENTRYPOINT /app/MathApp 
+CMD ["bee" , "run"]
